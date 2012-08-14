@@ -1,11 +1,15 @@
 requirejs.config({
     //By default load any module IDs from js/lib
-    baseUrl: 'scripts/lib'    
+    baseUrl: 'scripts/lib',
+    paths: {
+        learn : "../learn"
+    }    
 });
 
 // Start the main app logic.
-requirejs(['jquery'],
-function   ($,        canvas,   sub) {
-    //jQuery, canvas and the app/sub module are all
-    //loaded and can be used here now.
+requirejs(['learn/car', 'learn/print'],
+function   (car, printer) {
+   document.write(JSON.stringify(car));
+   car.print("Printing through car");
+   printer.output("Print this shit");
 });
