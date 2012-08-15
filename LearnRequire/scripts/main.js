@@ -3,18 +3,25 @@ requirejs.config({
     baseUrl: 'scripts/lib',
     paths: {
         // Load all jars from learn folder
-    	learn : "../learn"
-    }    
+    	learn : "../learn",
+    	jquery : "./jquery/jquery",
+    	underscore : "./underscore/Underscore",
+    	backbone : "./backbone/Backbone"    },  
+	shim: {
+	    'underscore': {
+	      deps: ['jquery'], //dependencies
+	      exports: '_' //the exported symbol
+	    },
+	    backbone: {
+	      deps: ['underscore', 'jquery'],
+	      exports: 'Backbone'
+	    }
+	  }
 });
 
 // Start the main app logic.
-requirejs(['learn/testObject', 'learn/print'],
-function   (testObject, printer) {
-	testObject.setId(200);
-	testObject.setName("TempNamedObject");
-	testObject.printObject();
-	
-	var test = {age:100,address:"Sunnyvale"};
-	testObject.printThisObject(test);
+requirejs(['jquery','underscore','backbone','learn/app'],
+function ($,_,Backbone,App) {	
+	App.initialize();		
    
 });
