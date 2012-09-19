@@ -15,12 +15,29 @@ define([
 	testObject.printThisObject(test);
 	
 	Person = Backbone.Model.extend({
-        initialize: function(){
-            alert("Welcome to this world");
+		defaults: {
+            name: 'Fetus',
+            age: 0          
+        },
+		initialize: function(){
+            console.log("INIT person");
+            this.bind("change:name", function(){
+                var name = this.get("name"); // 'Stewie Griffin'
+                print.output("Name changes to "+ name);
+            });
+            
+        },
+        show: function(){
+        	print.output(JSON.stringify(this));
         }
+        
+        
     });
     
-    var person = new Person;	
+    var person = new Person;
+    person.set({name:"Sushanth", age:"30"});
+    person.set({name: "Stewie Griffin"});
+    person.show();
 	
   }
 
