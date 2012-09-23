@@ -2,7 +2,7 @@ package ds;
 
 public class CsuStringStack implements IsuStringStack {
 
-	public Node firstNode = null;
+	private Node firstNode = null;
 	
 	private class Node{
 		String item=null;
