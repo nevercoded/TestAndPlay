@@ -1,7 +1,9 @@
 package ds;
 
+import java.util.Iterator;
+
 // Generic stack implementation.
-public class CsuStack<Item> {
+public class CsuStack<Item> implements Iterable<Item> {
 	
 	private Node firstNode = null;
 	
@@ -36,6 +38,35 @@ public class CsuStack<Item> {
 
 	public boolean isEmpty() {
 		return firstNode==null;
+	}
+
+	@Override
+	public Iterator<Item> iterator() {
+		return new ListIterator();
+	}
+	
+	private class ListIterator implements Iterator<Item>{
+		
+		private Node current = firstNode;
+		
+		@Override
+		public boolean hasNext() {			
+			return current!=null;
+		}
+
+		@Override
+		public Item next() {
+			Item item = current.item;
+			current = current.next;
+			return item;
+		}
+
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			// Not implementing it as it is usually risky
+		}
+		
 	}
 
 }

@@ -2,6 +2,8 @@ package ds.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -39,4 +41,21 @@ public class CsuStackTest {
 		assertTrue(intStack.isEmpty());		
 	}
 
+	@Test
+	public void testStackIterator(){
+		assertTrue(intStack.isEmpty());
+		intStack.push(100);
+		intStack.push(200);
+		intStack.push(100);
+		intStack.push(200);
+		intStack.push(100);
+		intStack.push(200);
+		Iterator<Integer> iter = intStack.iterator();
+		while(iter.hasNext()){
+			Integer item = iter.next();
+			System.out.println(item);
+			assertTrue(!item.equals(null));
+		}
+		
+	}
 }

@@ -1,6 +1,8 @@
 package ds;
 
-public class CsuQueue<Item> {
+import java.util.Iterator;
+
+public class CsuQueue<Item> implements Iterable<Item>{
 	private class Node{
 		Item item;
 		Node next;
@@ -40,5 +42,34 @@ public class CsuQueue<Item> {
 	
 	public boolean isEmpty() {
 		return firstNode==null;
+	}
+
+	@Override
+	public Iterator<Item> iterator() {
+		return new ListIterator();
+	}
+	
+	private class ListIterator implements Iterator<Item>{
+
+		private Node current = firstNode;
+		
+		@Override
+		public boolean hasNext() {
+			return current!=null;
+		}
+
+		@Override
+		public Item next() {
+			Item item = current.item;
+			current = current.next;			
+			return item;
+		}
+
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

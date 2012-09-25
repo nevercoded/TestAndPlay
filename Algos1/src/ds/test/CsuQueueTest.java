@@ -2,6 +2,8 @@ package ds.test;
 
 import static org.junit.Assert.*;
 
+import java.util.Iterator;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -37,4 +39,21 @@ public class CsuQueueTest {
 		assertTrue(intQ.isEmpty());
 	}
 
+	@Test
+	public void testStackIterator(){
+		assertTrue(intQ.isEmpty());
+		intQ.enqueue(100);
+		intQ.enqueue(200);
+		intQ.enqueue(100);
+		intQ.enqueue(200);
+		intQ.enqueue(100);
+		intQ.enqueue(200);
+		Iterator<Integer> iter = intQ.iterator();
+		while(iter.hasNext()){
+			Integer item = iter.next();
+			System.out.println(item);
+			assertTrue(!item.equals(null));
+		}
+	}	
 }
+	
